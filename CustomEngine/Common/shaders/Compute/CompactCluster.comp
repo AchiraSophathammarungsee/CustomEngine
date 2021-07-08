@@ -1,0 +1,27 @@
+#version 430 core
+layout(local_size_x = 1, local_size_y = 1) in;
+
+layout (std430, binding = 7) buffer activeClustersSSBO
+{
+  bool activeClusters[];
+};
+
+layout (std430, binding = 8) buffer compactClusterSSBO
+{
+  uint compactClusters[];
+};
+
+layout (std430, binding = 9) buffer globalCompactCountSSBO
+{
+  uint globalActiveClusterCount;
+};
+
+void main()
+{
+  uint clusterID = gl_GlobalInvocationID[0];
+  if(activeClusters[clusterID])
+  {
+    uint offset = atomicAdd(globalActiveClusterCount, 1);
+    compactClusters[offset] = clusterID;
+  }
+}
