@@ -10,8 +10,12 @@ If compile on laptop, please make sure to select Dedicate Graphics Card (NVidia)
 
 # Running
 Run Debug/Engine.exe for debug version
+
 Run Release/Engine.exe for release version
+
 Both of these are 32-bit
+
+*There are pre-compiled executables in case the project failed to build.
 
 # Scene navigation
 W/A/S/D to move around
